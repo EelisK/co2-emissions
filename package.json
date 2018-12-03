@@ -6,7 +6,8 @@
   "scripts": {
     "start:prod": "webpack --config webpack/prod.js",
     "start:dev": "webpack-dev-server --open --config webpack/dev.js",
-    "start": "npm run start:prod",
+    "server": "node src/server/index.js",
+    "start": "npm run start:prod && npm run server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
