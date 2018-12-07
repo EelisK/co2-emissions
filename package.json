@@ -6,8 +6,9 @@
   "scripts": {
     "start:prod": "webpack --config webpack/prod.js",
     "start:dev": "webpack-dev-server --open --config webpack/dev.js",
-    "server": "node src/server/index.js",
-    "start": "npm run start:prod && npm run server",
+    "prod:server": "node src/server/index.js",
+    "dev:server": "nodemon src/server/index.js",
+    "start": "npm run start:prod && npm run prod:server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,6 +29,7 @@
     "clean-webpack-plugin": "^1.0.0",
     "css-loader": "^1.0.1",
     "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.18.7",
     "style-loader": "^0.23.1",
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2",
@@ -37,6 +39,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "express": "^4.16.4",
+    "fast-xml-parser": "^3.12.10",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^5.1.1",
