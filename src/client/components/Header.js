@@ -1,7 +1,14 @@
 import React from "react";
+import { Typography, AppBar, Toolbar } from "@material-ui/core";
 
 const Header = () => (
-    <h1>CO<sup>2</sup>-EMISSIONS</h1>
+    <AppBar position="static">
+        <Toolbar>
+            <Typography variant="h6" gutterBottom>
+                CO<sup>2</sup>-EMISSIONS
+            </Typography>
+        </Toolbar>
+    </AppBar>
 );
 
 export default Header;

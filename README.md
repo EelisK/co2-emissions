@@ -2,5 +2,6 @@
 ### TODO
 - API
     - Database migration?
-- Add frontend framework
-    - Possibly https://www.primefaces.org/primereact/
+- Frontend
+    - Pick framework
+    - Pick data visualisation tool

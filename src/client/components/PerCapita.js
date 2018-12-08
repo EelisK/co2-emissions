@@ -1,11 +1,21 @@
 import React from "react";
+import { FormControlLabel, Switch } from "@material-ui/core";
 
-class PerCapita extends React.Component {
-    render() {
-        return (
-            <input type="checkbox" checked={this.props.checked} onChange={this.props.toggleChecked} />
-        );
-    }
-}
+const PerCapita = props => {
+    return (
+        <div>
+            <FormControlLabel
+                control={
+                    <Switch
+                        checked={props.checked}
+                        onChange={props.toggleChecked}
+                        color="primary"
+                    />
+                }
+                label="Per capita"
+            />
+        </div>
+    );
+};
 
 export default PerCapita;
