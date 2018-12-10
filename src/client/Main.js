@@ -1,6 +1,4 @@
 import React from "react";
-import Search from "./components/Search";
-import Results from "./components/Results";
 import Header from "./components/Header";
 import persistor from "./config/persistor";
 import store from "./config/store";
@@ -9,6 +7,8 @@ import { PersistGate } from "redux-persist/integration/react";
 import PerCapitaContainer from "./containers/PerCapitaContainer";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import theme from "./config/theme";
+import ResultsContainer from "./containers/ResultsContainer";
+import SearchContainer from "./containers/SearchContainer";
 
 
 const Main = () => {
@@ -18,9 +18,9 @@ const Main = () => {
                 <PersistGate persistor={persistor}>
                     <Header />
                     <div className="co2-app-container">
-                        <Search />
+                        <SearchContainer />
                         <PerCapitaContainer />
-                        <Results />
+                        <ResultsContainer />
                     </div>
                 </PersistGate>
             </Provider>
