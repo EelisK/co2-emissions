@@ -16,3 +16,7 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
     console.log(`Server running at ${port}\n`);
 });
+
+app.use((req, res) => {
+    res.status(404).send(`${req.originalUrl} not found`)
+});
