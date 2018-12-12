@@ -32,11 +32,11 @@ const CO2Chart = props => {
                     <Label value="Year" offset={0} position="insideBottom" />
                 </XAxis>
                 <YAxis dataKey="emissions" tickFormatter={formatCO2Emissions}>
-                    <Label value="CO² emissions in tkg" angle={-90} position="insideBottomLeft" offset={10}/>
+                    <Label value={props.yLabel} angle={-90} position="insideBottomLeft" offset={8}/>
                 </YAxis> 
                 <Line type="monotone" dataKey="emissions" stroke={theme.palette.secondary.dark} />
                 <CartesianGrid stroke={"#CCCCCC"} />
-                <Tooltip />
+                <Tooltip formatter={props.formatEmissions} />
             </LineChart>
         </>
     );

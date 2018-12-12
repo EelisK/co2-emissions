@@ -1,7 +1,6 @@
 import React from "react";
 import { CircularProgress, Grid } from "@material-ui/core";
-import groupBy from "../util/groupBy";
-import CO2Chart from "./CO2Chart";
+import CO2ChartContainer from "../containers/CO2ChartContainer";
 
 const Results = props => {
     if (props.error)
@@ -12,30 +11,20 @@ const Results = props => {
                 <CircularProgress color="primary" style={{ width: 75, height: 75 }} />
             </div>
         );
-    if (props.results) {
-
-        // Filter out invalid data
-        const definedResults =
-            props.results.filter(x => x.emissions !== null && x.year !== null);
-
-        // Group by countries
-        const groupedResults = groupBy(definedResults, x => x.country);
-
-        return Object
-            .keys(groupedResults)
-            .map((country, i) => {
-                return (
-                    <Grid container wrap="nowrap" key={i}>
-                        <Grid item className="co2-app-chart-container">
-                            <CO2Chart
-                                data={groupedResults[country]}
-                                country={country} />
-                        </Grid>
+    const groups = props.getDataGroups();
+    return Object
+        .keys(groups)
+        .map((country, i) => {
+            return (
+                <Grid container wrap="nowrap" key={i}>
+                    <Grid item className="co2-app-chart-container">
+                        <CO2ChartContainer
+                            data={groups[country]}
+                            country={country} />
                     </Grid>
-                );
-            });
-    }
-    return null;
+                </Grid>
+            );
+        });
 }
 
 export default Results;
