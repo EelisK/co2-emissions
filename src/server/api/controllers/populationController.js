@@ -1,4 +1,4 @@
-const xml2Json = require("../util/xml2Json"),
+const xml2Json = require("../../util/xml2Json"),
     fs = require("fs"),
     popPath = "src/server/assets/API_SP.POP.TOTL_DS2_en_xml_v2_10224853.xml";
 

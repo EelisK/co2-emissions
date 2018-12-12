@@ -8,6 +8,7 @@
     "start:dev": "webpack --config webpack/dev.js",
     "server:prod": "node src/server/index.js",
     "server:dev": "nodemon src/server/index.js",
+    "migrate": "npm run server:prod migrate",
     "start": "npm run start:prod && npm run server:prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -41,8 +42,10 @@
   "dependencies": {
     "@material-ui/core": "^3.6.1",
     "babel-polyfill": "^6.26.0",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "fast-xml-parser": "^3.12.10",
+    "pg": "^7.7.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^5.1.1",

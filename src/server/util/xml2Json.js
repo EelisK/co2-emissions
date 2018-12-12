@@ -6,12 +6,12 @@ const parser = require("fast-xml-parser");
  * @param {*} fields field names that are used in the xml api schema
  */
 function xml2Json(xmlContent, fields) {
-    const json = parser.parse(xmlContent).Root;
-    json.data.record = json.data.record
+    const json = parseObject(parser.parse(xmlContent));
+    json.root.data.record = json.root.data.record
         .map(x => x.field)
         .map(x => fields ?
             x.reduce((curr, next, i) => ({ ...curr, [fields[i]]: next || null }), {}) : x);
-    return parseObject(json);
+    return json;
 }
 
 /**
