@@ -16,7 +16,6 @@ module.exports = function () {
         if (allContent[x.country] && allContent[x.country][x.year])
             allContent[x.country][x.year] = { ...allContent[x.country][x.year], population: x.value };
     });
-    //console.log(JSON.stringify(allContent["aruba"]));
     const clientPromise = require("../getClient")();
     return clientPromise
         .then(client =>
