@@ -16,10 +16,7 @@ const Results = props => {
 
         // Filter out invalid data
         const definedResults =
-            props.results.filter(x =>
-                x.value !== null &&
-                typeof x.value !== "undefined" &&
-                typeof x.year !== "undefined");
+            props.results.filter(x => x.emissions !== null && x.year !== null);
 
         // Group by countries
         const groupedResults = groupBy(definedResults, x => x.country);

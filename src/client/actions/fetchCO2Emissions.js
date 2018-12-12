@@ -7,7 +7,6 @@ const fetchCO2Emissions = country => dispatch => {
     dispatch(getCO2Emissions());
     new HttpRequest(`/api/v1/emissions/${country}`)
         .send()
-        .then(x => x.data.record)
         .then(x =>  dispatch(receiveCO2Emissions(x)))
         .catch(x => dispatch(failReceiveCO2Emissions(x)));
 };
