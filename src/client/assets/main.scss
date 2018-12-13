@@ -2,11 +2,23 @@
 
 $unit: 8px;
 
+@mixin gradient-background($value) {
+    // Chrome 10-25, Safari 5.1-6
+    background: -webkit-linear-gradient($value);
+    // W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+
+    background: linear-gradient($value);
+}
+
 html body {
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
+}
+
+body {
+    // @include gradient-background((to right,#383c46, #323138));
+    background: #2a292f;
 }
 
 .co2-app-search {
@@ -29,4 +41,14 @@ html body {
 
 .co2-app-chart-container {
     margin: 0 auto !important;
+}
+
+.co2-app-chart-tooltip {
+    padding: $unit * 2;
+    opacity: 0.95;
+}
+
+.co2-app-chart-tooltip-item {
+    padding: $unit;
+    text-align: center;
 }

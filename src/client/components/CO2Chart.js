@@ -1,20 +1,17 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
-import {
-    LineChart,
-    Line, XAxis,
-    CartesianGrid,
-    YAxis, Tooltip,
-    Label
-} from "recharts";
+import { Typography, Paper } from "@material-ui/core";
+import { LineChart, Line, XAxis, CartesianGrid, YAxis, Tooltip, Label } from "recharts";
 import titleCase from "../util/titleCase";
 import unescapeXML from "../util/unescapeXML";
 import theme from "../config/theme";
+import CO2ChartTooltip from "./CO2ChartTooltip";
 
 const CO2Chart = props => {
+    const space = theme.spacing.unit * 2;
+    const strokeColor = theme.palette.text.primary;
     // Get dimensions for chart (css doesn't work here)
     const isMobile = window.innerHeight <= 768;
-    const width = isMobile ? window.outerWidth * .9 : 700;
+    const width = (isMobile ? window.outerWidth * .9 : 700) - space * 2;
     const height = 400;
     const formatCO2Emissions = x => {
         const precision = Number(x.toFixed(2)).toPrecision(6);
@@ -23,22 +20,20 @@ const CO2Chart = props => {
         return x;
     };
     return (
-        <>
+        <Paper style={{ padding: space, marginBottom: space }}>
             <Typography variant="h5">
                 {titleCase(unescapeXML(props.country))}
             </Typography>
             <LineChart width={width} height={height} data={props.data}>
-                <XAxis dataKey="year">
-                    <Label value="Year" offset={0} position="insideBottom" />
-                </XAxis>
-                <YAxis dataKey="value" tickFormatter={formatCO2Emissions}>
-                    <Label value="CO² emissions in tkg" angle={-90} position="insideBottomLeft" offset={10}/>
-                </YAxis> 
-                <Line type="monotone" dataKey="value" stroke={theme.palette.secondary.dark} />
-                <CartesianGrid stroke={"#CCCCCC"} />
-                <Tooltip />
+                <XAxis dataKey="year" stroke={strokeColor} />
+                <YAxis dataKey="emissions" stroke={strokeColor} tickFormatter={formatCO2Emissions}>
+                    <Label value={props.yLabel} angle={-90} position="insideBottomLeft" fill={strokeColor} offset={8} />
+                </YAxis>
+                <Line type="monotone" dataKey="emissions" stroke={theme.palette.secondary.main} />
+                <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.primary.light} />
+                <Tooltip formatter={props.formatEmissions} content={<CO2ChartTooltip format={formatCO2Emissions} />} />
             </LineChart>
-        </>
+        </Paper>
     );
 };
 
