@@ -3,8 +3,8 @@ import CO2Chart from "../components/CO2Chart";
 
 const mapStateToProps = state => {
     return {
-        formatEmissions: x => state.perCapita ? x.toFixed(5) : x.toFixed(2),
-        yLabel: `CO² emissions in ${state.perCapita ? "kg" : "tkg"}${state.perCapita ? " per capita": ""}`
+        formatEmissions: x => x.toFixed(state.perCapita ? 5 : 2),
+        yLabel: `CO² emissions in ${state.perCapita ? "kg per capita" : "10³kg"}`
     }
 };
 

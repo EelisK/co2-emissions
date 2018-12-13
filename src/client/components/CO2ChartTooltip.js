@@ -5,7 +5,7 @@ import theme from "../config/theme";
 const CO2ChartTooltip = props => {
     const { payload, label, active } = props;
     const itemClassName = "co2-app-chart-tooltip-item";
-    if (active) {
+    if (active)
         return (
             <Paper className="co2-app-chart-tooltip">
                 <Typography variant="caption" className={itemClassName}>
@@ -19,7 +19,6 @@ const CO2ChartTooltip = props => {
                 ))}
             </Paper>
         );
-    }
     return null;
 };
 

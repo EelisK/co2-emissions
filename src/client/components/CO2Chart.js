@@ -4,7 +4,7 @@ import { LineChart, Line, XAxis, CartesianGrid, YAxis, Tooltip, Label } from "re
 import titleCase from "../util/titleCase";
 import unescapeXML from "../util/unescapeXML";
 import theme from "../config/theme";
-import CO2ChartTooltip from "./CO2ChartTooltip";
+import CO2ChartTooltipContainer from "../containers/CO2ChartTooltipContainer";
 
 const CO2Chart = props => {
     const space = theme.spacing.unit * 2;
@@ -31,7 +31,7 @@ const CO2Chart = props => {
                 </YAxis>
                 <Line type="monotone" dataKey="emissions" stroke={theme.palette.secondary.main} />
                 <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.primary.light} />
-                <Tooltip formatter={props.formatEmissions} content={<CO2ChartTooltip format={formatCO2Emissions} />} />
+                <Tooltip formatter={props.formatEmissions} content={<CO2ChartTooltipContainer />} />
             </LineChart>
         </Paper>
     );
