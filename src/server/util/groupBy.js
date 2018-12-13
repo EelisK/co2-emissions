@@ -4,7 +4,7 @@
  * @param {*} key The function that returns keys
  * for given array items
  */
-const groupBy = (arr, key) => {
+function groupBy(arr, key) {
     return arr.reduce((group, next) => {
         const nextKey = key(next);
         if (group[nextKey])
@@ -13,6 +13,6 @@ const groupBy = (arr, key) => {
             group[nextKey] = [next];
         return group;
     }, {});
-};
+}
 
-export default groupBy;
+module.exports = groupBy;

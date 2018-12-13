@@ -10,7 +10,8 @@ module.exports = function () {
     const popComtent = xml2Json(fs.readFileSync(popPath).toString(), ["country", "item", "year", "value"]).root.data.record;
     const allContent = {};
     co2Comtent.forEach(x => {
-        (allContent[x.country] = allContent[x.country] || {})[x.year] = { emissions: x.value };
+        // Multiply emissions by 1e3 because it makes more sence to store it with kg as unit instead of 1e-3*kg
+        (allContent[x.country] = allContent[x.country] || {})[x.year] = { emissions: 1e3 * x.value };
     });
     popComtent.forEach(x => {
         if (allContent[x.country] && allContent[x.country][x.year])
