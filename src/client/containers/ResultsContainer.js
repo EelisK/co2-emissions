@@ -11,7 +11,7 @@ const getDataGroups = (data, perCapita) => {
         data.filter(x => x.emissions !== null && x.year !== null);
 
     if (perCapita)
-        definedResults = definedResults.map(x => ({ ...x, emissions: x.emissions / x.population }));
+        definedResults = definedResults.map(x => ({ ...x, emissions: 1000 * x.emissions / x.population }));
 
     // Group by countries
     return groupBy(definedResults, x => x.country);
