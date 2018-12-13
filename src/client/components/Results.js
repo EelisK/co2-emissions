@@ -11,15 +11,14 @@ const Results = props => {
                 <CircularProgress color="primary" style={{ width: 75, height: 75 }} />
             </div>
         );
-    const groups = props.getDataGroups();
     return Object
-        .keys(groups)
+        .keys(props.data)
         .map((country, i) => {
             return (
                 <Grid container wrap="nowrap" key={i}>
                     <Grid item className="co2-app-chart-container">
                         <CO2ChartContainer
-                            data={groups[country]}
+                            data={props.mapData(props.data[country])}
                             country={country} />
                     </Grid>
                 </Grid>
