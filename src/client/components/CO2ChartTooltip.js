@@ -12,7 +12,7 @@ const CO2ChartTooltip = props => {
                     {label}
                 </Typography>
                 <Divider style={{ background: theme.palette.primary.main }} />
-                {payload.map((x, i) => (
+                {payload && payload.map((x, i) => (
                     <Typography variant="subtitle1" className={itemClassName} key={i}>
                         {props.format(x.payload.emissions)}
                     </Typography>
