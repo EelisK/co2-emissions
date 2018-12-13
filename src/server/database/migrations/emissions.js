@@ -17,6 +17,8 @@ module.exports = function () {
         if (allContent[x.country] && allContent[x.country][x.year])
             allContent[x.country][x.year] = { ...allContent[x.country][x.year], population: x.value };
     });
+    // Delete data that is marked as "not classified"
+    delete allContent["not classified"];
     const clientPromise = require("../getClient")();
     return clientPromise
         .then(client =>
