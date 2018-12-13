@@ -12,7 +12,11 @@ function groupEmissionData(data) {
     Object.keys(grouped)
         .forEach(countryName => {
             grouped[countryName] =
-                grouped[countryName].map(({ country, ...relevantData }) => relevantData);
+                grouped[countryName]
+                    .map(({ country, ...relevantData }) => relevantData)
+                    // Turn population into Number type since it is stored as BIGINT in the database
+                    // and therefore will be interpreted as string in JavaScript (don't worry it will not overflow)
+                    .map(({ population, ...rest }) => Object.assign({}, rest, { population: Number(population) }))
         });
     return grouped;
 }
