@@ -7,7 +7,7 @@ const mapStateToProps = state => {
         error: state.co2Emissions.status === FetchStatus.Error,
         loading: state.co2Emissions.status === FetchStatus.Pending,
         inactive: state.co2Emissions.status === FetchStatus.Inactive,
-        data: state.co2Emissions.emissions || {},
+        countries: state.co2Emissions.emissions || [],
         mapData: data => data.filter(x => x.emissions).map(x => {
             if (state.perCapita)
                 return { ...x, emissions: x.emissions / x.population }

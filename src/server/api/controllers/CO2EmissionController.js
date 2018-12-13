@@ -9,16 +9,21 @@ const groupBy = require("../../util/groupBy");
  */
 function groupEmissionData(data) {
     const grouped = groupBy(data, x => x.country.trim());
-    Object.keys(grouped)
-        .forEach(countryName => {
-            grouped[countryName] =
-                grouped[countryName]
-                    .map(({ country, ...relevantData }) => relevantData)
-                    // Turn population into Number type since it is stored as BIGINT in the database
-                    // and therefore will be interpreted as string in JavaScript (don't worry it will not overflow)
-                    .map(({ population, ...rest }) => Object.assign({}, rest, { population: Number(population) }))
+    const arr = Object.keys(grouped)
+        .map(countryName => {
+            const countryData = grouped[countryName]
+                .map(({ country, ...relevantData }) => relevantData)
+                // Turn population into Number type since it is stored as BIGINT in the database
+                // and therefore will be interpreted as string in JavaScript (don't worry it will not overflow)
+                .map(({ population, ...rest }) => Object.assign({}, rest, { population: Number(population) }));
+            return {
+                name: countryName,
+                data: countryData
+            };
         });
-    return grouped;
+    return {
+        countries: arr
+    };
 }
 
 function listEmissions(req, res) {
