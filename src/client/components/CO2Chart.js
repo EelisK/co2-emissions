@@ -11,7 +11,7 @@ const CO2Chart = props => {
     const strokeColor = theme.palette.text.primary;
     // Get dimensions for chart (css doesn't work here)
     const isMobile = window.innerHeight <= 768;
-    const width = (isMobile ? window.outerWidth * .9 : 700) - space * 2;
+    const width = Math.min((isMobile ? window.innerWidth * 0.9 : 700), 700) - space * 2;
     const height = 400;
     const formatCO2Emissions = x => {
         const precision = Number(x.toFixed(2)).toPrecision(6);
