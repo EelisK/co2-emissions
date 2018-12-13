@@ -15,7 +15,8 @@ function groupEmissionData(data) {
                 .map(({ country, ...relevantData }) => relevantData)
                 // Turn population into Number type since it is stored as BIGINT in the database
                 // and therefore will be interpreted as string in JavaScript (don't worry it will not overflow)
-                .map(({ population, ...rest }) => Object.assign({}, rest, { population: Number(population) }));
+                // NOTE: Number(null) === 0 and we don't want to return a number if the actual value is null
+                .map(({ population, ...rest }) => Object.assign({}, rest, { population: Number(population) || population }));
             return {
                 name: countryName,
                 data: countryData
