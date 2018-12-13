@@ -1,20 +1,29 @@
-const xml2Json = require("../util/xml2Json"),
-    fs = require("fs"),
-    co2Path = "src/server/assets/API_EN.ATM.CO2E.KT_DS2_en_xml_v2_10227343.xml";
-
-const co2Content = () =>
-    xml2Json(fs.readFileSync(co2Path).toString(), ["country", "Item", "Year", "Value"]);
+const escapeQueryString = require("../../util/escapeQueryString");
+const escapeXML = require("../../util/escapeXML");
+const getClient = require("../../database/getClient");
 
 function listEmissions(req, res) {
-    res.json(co2Content()).send();
+    const clientPromise = getClient();
+    return clientPromise
+        .then(client => {
+            return client.query(`SELECT * FROM emissions;`);
+        })
+        .then(x => res.json(x.rows))
+        .then(() => clientPromise)
+        .then(x => x.end());
 }
 
 function listEmissionsByCountry(req, res) {
-    const country = req.params.country.toLowerCase();;
-    const retVal = co2Content();
-    retVal.data.record =
-        retVal.data.record.filter(data => data.country.match(country) !== null);
-    res.json(retVal).send();
+    // First escape the string to XML format and then to a query friendly format
+    const country = escapeQueryString(escapeXML(req.params.country.toLowerCase()));
+    const clientPromise = getClient();
+    return clientPromise
+        .then(client =>
+            client.query(`SELECT * FROM emissions WHERE country like '%${country}%';`))
+        .then(x => res.json(x.rows).send())
+        .catch(e => res.status(500).send())
+        .then(() => clientPromise)
+        .then(x => x.end());
 }
 
 module.exports = { listEmissions, listEmissionsByCountry };
