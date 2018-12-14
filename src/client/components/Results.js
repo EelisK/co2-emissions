@@ -13,11 +13,14 @@ const Results = props => {
         );
     return props.countries
         .map((country, i) => {
+            const data = props.mapData(country.data);
+            if (data.length === 0)
+                return null;
             return (
                 <Grid container wrap="nowrap" key={i}>
                     <Grid item className="co2-app-chart-container">
                         <CO2ChartContainer
-                            data={props.mapData(country.data)}
+                            data={data}
                             country={country.name} />
                     </Grid>
                 </Grid>
