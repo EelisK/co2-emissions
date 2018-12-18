@@ -17,8 +17,7 @@ html body {
 }
 
 body {
-    // @include gradient-background((to right,#383c46, #323138));
-    background: #2a292f;
+    @include gradient-background((to right, #323138, #2a292f));
 }
 
 .co2-app-search {
@@ -51,4 +50,18 @@ body {
 .co2-app-chart-tooltip-item {
     padding: $unit;
     text-align: center;
+}
+
+.co2-app-scroll-top {
+    $duration: 300ms;
+    position: fixed !important;
+    bottom: $unit;
+    right: $unit;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity $duration ease-in-out, visibility $duration linear !important;
+    &[hidden=""] {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
