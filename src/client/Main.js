@@ -9,6 +9,7 @@ import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import theme from "./config/theme";
 import ResultsContainer from "./containers/ResultsContainer";
 import SearchContainer from "./containers/SearchContainer";
+import ScrollTop from "./components/ScrollTop";
 
 
 const Main = () => {
@@ -22,6 +23,7 @@ const Main = () => {
                         <PerCapitaContainer />
                         <ResultsContainer />
                     </div>
+                    <ScrollTop />
                 </PersistGate>
             </Provider>
         </MuiThemeProvider>
