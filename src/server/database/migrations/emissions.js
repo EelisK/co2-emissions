@@ -19,17 +19,15 @@ module.exports = function () {
     });
     // Delete data that is marked as "not classified"
     delete allContent["not classified"];
-    const clientPromise = require("../getClient")();
-    return clientPromise
-        .then(client =>
-            Promise.all(Object
-                .keys(allContent)
-                .map(country =>
-                    Promise.all(Object
-                        .keys(allContent[country])
-                        .map(year => client.query(`INSERT INTO emissions VALUES ($1, $2, $3, $4) ON CONFLICT DO NOTHING;`,
-                            [country, year, allContent[country][year].population, allContent[country][year].emissions])))
-                )))
-        .then(() => clientPromise)
-        .then(client => client.end());
+    const pool = require("../getPool")();
+    return Promise.all(
+        Object
+            .keys(allContent)
+            .map(country =>
+                Promise.all(Object
+                    .keys(allContent[country])
+                    .map(year => pool.query(`INSERT INTO emissions VALUES ($1, $2, $3, $4) ON CONFLICT DO NOTHING;`,
+                        [country, year, allContent[country][year].population, allContent[country][year].emissions])))
+            ))
+        .then(() => pool.end());
 }
