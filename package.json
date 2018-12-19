@@ -10,7 +10,8 @@
     "server:dev": "nodemon src/server/index.js",
     "migrate": "npm run server:prod migrate",
     "start": "npm run start:prod && npm run server:prod",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "npm run migrate && npm run start:prod"
   },
   "repository": {
     "type": "git",
@@ -53,5 +54,8 @@
     "redux": "^4.0.1",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0"
+  },
+  "engines": {
+    "node": "^10.12.0"
   }
 }

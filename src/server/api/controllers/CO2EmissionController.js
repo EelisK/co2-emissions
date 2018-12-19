@@ -36,7 +36,7 @@ function listEmissionsByCountry(req, res) {
     // First escape the string to XML format and then to a query friendly format
     const country = escapeQueryString(escapeXML(req.params.country.toLowerCase()));
     const pool = getPool();
-    return pool.query(`SELECT * FROM emissions WHERE country like '%${country}%';`)
+    return pool.query(`SELECT * FROM emissions WHERE country like '%${country}%' ORDER BY year;`)
         .then(x => res.json(groupEmissionData(x.rows)).send())
         .catch(() => res.status(500).send())
         .then(() => pool.end());
