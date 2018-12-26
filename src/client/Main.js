@@ -10,6 +10,7 @@ import theme from "./config/theme";
 import ResultsContainer from "./containers/ResultsContainer";
 import SearchContainer from "./containers/SearchContainer";
 import ScrollTop from "./components/ScrollTop";
+import ChartTypeSelectorContainer from "./containers/ChartTypeSelectorContainer";
 
 
 const Main = () => {
@@ -20,7 +21,10 @@ const Main = () => {
                     <Header />
                     <div className="co2-app-container">
                         <SearchContainer />
-                        <PerCapitaContainer />
+                        <div className="co2-app-chart-options">
+                            <PerCapitaContainer />
+                            <ChartTypeSelectorContainer />
+                        </div>
                         <ResultsContainer />
                     </div>
                     <ScrollTop />

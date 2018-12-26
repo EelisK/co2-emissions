@@ -40,6 +40,7 @@ body {
 
 .co2-app-chart-container {
     margin: 0 auto !important;
+    width: 100%;
 }
 
 .co2-app-chart-tooltip {
@@ -64,4 +65,9 @@ body {
         opacity: 0;
         visibility: hidden;
     }
+}
+
+.co2-app-chart-options {
+    display: flex;
+    align-items: center;
 }
