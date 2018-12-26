@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import CO2ChartTooltip from "../components/CO2ChartTooltip";
+import CO2ChartTooltip from "../components/CO2GraphTooltip";
 
 const mapStateToProps = state => {
     return {
