@@ -5,7 +5,6 @@ import {
     ExpansionPanel, ExpansionPanelSummary
 } from "@material-ui/core";
 import titleCase from "../util/titleCase";
-import unescapeXML from "../util/unescapeXML";
 import ArrowUpIcon from "./ArrowUpIcon";
 
 
@@ -42,7 +41,7 @@ class CO2Table extends React.Component {
                 <ExpansionPanel>
                     <ExpansionPanelSummary expandIcon={<ArrowUpIcon style={{ transform: "matrix(-1, 0, 0, -1, 0, 0)" }} />}>
                         <Typography variant="subtitle1">
-                            {titleCase(unescapeXML(this.props.country))}
+                            {titleCase(this.props.country)}
                         </Typography>
                     </ExpansionPanelSummary>
                     <Divider />

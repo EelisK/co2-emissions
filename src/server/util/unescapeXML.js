@@ -8,13 +8,13 @@
  * (https://en.wikipedia.org/wiki/Character_encodings_in_HTML#XML_character_references)
  * @param {*} str string to be unescaped
  */
-const unescapeXML = str => {
+function unescapeXML(str) {
     return str
         .replace(/&amp;/g, "&")
         .replace(/&lt;/g, "<")
         .replace(/&gt;/g, ">")
         .replace(/&quot;/g, "\"")
         .replace(/&apos;/g, "'");
-};
+}
 
-export default unescapeXML;
+module.exports = unescapeXML;

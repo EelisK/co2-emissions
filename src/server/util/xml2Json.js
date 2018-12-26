@@ -1,4 +1,5 @@
 const parser = require("fast-xml-parser");
+const unescapeXML = require("./unescapeXML");
 
 /**
  * Parser API xml content to json
@@ -19,7 +20,7 @@ function xml2Json(xmlContent, fields) {
  * @param {*} object Object that is parsed
  */
 function parseObject(object) {
-    return JSON.parse(JSON.stringify(object).toLowerCase());
+    return JSON.parse(unescapeXML(JSON.stringify(object).toLowerCase()));
 }
 
 module.exports = xml2Json;

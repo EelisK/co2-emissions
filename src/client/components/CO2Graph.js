@@ -2,7 +2,6 @@ import React from "react";
 import { Typography, Paper } from "@material-ui/core";
 import { LineChart, Line, XAxis, CartesianGrid, YAxis, Tooltip, Label } from "recharts";
 import titleCase from "../util/titleCase";
-import unescapeXML from "../util/unescapeXML";
 import theme from "../config/theme";
 import CO2ChartTooltipContainer from "../containers/CO2GraphTooltipContainer";
 
@@ -22,7 +21,7 @@ const CO2Graph = props => {
     return (
         <Paper style={{ padding: space, marginBottom: space }}>
             <Typography variant="h5">
-                {titleCase(unescapeXML(props.country))}
+                {titleCase(props.country)}
             </Typography>
             <LineChart width={width} height={height} data={props.data}>
                 <XAxis dataKey="year" stroke={strokeColor} />
