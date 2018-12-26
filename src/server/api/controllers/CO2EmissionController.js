@@ -1,4 +1,3 @@
-const escapeQueryString = require("../../util/escapeQueryString");
 const getPool = require("../../database/getPool");
 const groupBy = require("../../util/groupBy");
 
@@ -33,9 +32,9 @@ function listEmissions(req, res) {
 
 function listEmissionsByCountry(req, res) {
     // First escape the string to XML format and then to a query friendly format
-    const country = escapeQueryString(req.params.country.toLowerCase());
+    const country = req.params.country.toLowerCase();
     const pool = getPool();
-    return pool.query(`SELECT * FROM emissions WHERE country like '%${country}%' ORDER BY year;`)
+    return pool.query("SELECT * FROM emissions WHERE country like $1 ORDER BY year;", [`%${country}%`])
         .then(x => res.json(groupEmissionData(x.rows)).send())
         .catch(() => res.status(500).send())
         .then(() => pool.end());
