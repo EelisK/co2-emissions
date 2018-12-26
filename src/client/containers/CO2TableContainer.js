@@ -19,7 +19,21 @@ const sortData = (data, precision, key, dir) => {
 
 const mapStateToProps = state => {
     return {
-        precision: state.perCapita ? 6 : 3
+        precision: state.perCapita ? 6 : 3,
+        cells: [
+            {
+                name: "year",
+                key: "year"
+            },
+            {
+                name: "emissions (" + (state.perCapita ? "kg per-capita" : "tkg") + ")",
+                key: "emissions"
+            },
+            {
+                name: "population",
+                key: "population"
+            },
+        ]
     }
 };
 

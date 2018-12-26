@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper, TableBody, TableRow, TableCell, Tooltip, TableSortLabel, TableHead, Table, Toolbar, Divider, Typography, ExpansionPanel, ExpansionPanelSummary } from "@material-ui/core";
+import { Paper, TableBody, TableRow, TableCell, Tooltip, TableSortLabel, TableHead, Table, Divider, Typography, ExpansionPanel, ExpansionPanelSummary } from "@material-ui/core";
 import theme from "../config/theme";
 import titleCase from "../util/titleCase";
 import unescapeXML from "../util/unescapeXML";
@@ -32,22 +32,6 @@ class CO2Table extends React.Component {
         });
     }
 
-    renderHeadCell(key) {
-        const currKey = this.state.sort.key;
-        const currDir = this.state.sort.dir;
-        return (
-            <TableCell sortDirection={currKey === key ? currDir : false}>
-                <Tooltip enterDelay={200} title="Sort">
-                    <TableSortLabel
-                        active={currKey === key}
-                        onClick={() => this.setSortKey(key)}
-                        direction={currDir}>{key}
-                    </TableSortLabel>
-                </Tooltip>
-            </TableCell>
-        );
-    }
-
     render() {
         const { key, dir } = this.state.sort;
         return (
@@ -62,9 +46,17 @@ class CO2Table extends React.Component {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                {this.renderHeadCell("year")}
-                                {this.renderHeadCell("emissions")}
-                                {this.renderHeadCell("population")}
+                                {this.props.cells.map((cell, idx) => (
+                                    <TableCell key={idx} sortDirection={cell.key === key ? dir : false}>
+                                        <Tooltip enterDelay={200} title="Sort">
+                                            <TableSortLabel
+                                                active={cell.key === key}
+                                                onClick={() => this.setSortKey(cell.key)}
+                                                direction={dir}>{cell.name}
+                                            </TableSortLabel>
+                                        </Tooltip>
+                                    </TableCell>
+                                ))}
                             </TableRow>
                         </TableHead>
                         <TableBody>
