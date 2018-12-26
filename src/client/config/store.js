@@ -17,7 +17,8 @@ const persistConfig = {
     key: "root",
     storage,
     whitelist: [
-        "perCapita"
+        "perCapita",
+        "chartType"
     ]
 };
 
