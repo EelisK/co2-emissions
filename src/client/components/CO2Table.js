@@ -1,6 +1,9 @@
 import React from "react";
-import { Paper, TableBody, TableRow, TableCell, Tooltip, TableSortLabel, TableHead, Table, Divider, Typography, ExpansionPanel, ExpansionPanelSummary } from "@material-ui/core";
-import theme from "../config/theme";
+import {
+    Paper, TableBody, TableRow, TableCell, Tooltip,
+    TableSortLabel, TableHead, Table, Divider, Typography,
+    ExpansionPanel, ExpansionPanelSummary
+} from "@material-ui/core";
 import titleCase from "../util/titleCase";
 import unescapeXML from "../util/unescapeXML";
 import ArrowUpIcon from "./ArrowUpIcon";
