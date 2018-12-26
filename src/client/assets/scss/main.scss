@@ -71,3 +71,25 @@ body {
     display: flex;
     align-items: center;
 }
+
+.co2-app-data-table-container {
+    margin-bottom: 2 * $unit;
+}
+
+/**
+ * This should point to the same element the class above
+ * but since material-ui creates papers in an unexpected way
+ * it has to be selected by the way it is located in the DOM
+ */
+.co2-app-chart-options ~ div:last-child {
+    padding-bottom: 4 * $unit;
+}
+
+.co2-app-data-table {
+    @media (max-width: 768px) {
+        /**
+         * Prevent table overflow on mobile
+         */
+        table-layout: fixed;
+    }
+}

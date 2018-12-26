@@ -35,7 +35,7 @@ class CO2Table extends React.Component {
     render() {
         const { key, dir } = this.state.sort;
         return (
-            <Paper style={{ marginBottom: theme.spacing.unit * 2 }}>
+            <Paper className="co2-app-data-table-container">
                 <ExpansionPanel>
                     <ExpansionPanelSummary expandIcon={<ArrowUpIcon style={{ transform: "matrix(-1, 0, 0, -1, 0, 0)" }} />}>
                         <Typography variant="subtitle1">
@@ -43,7 +43,7 @@ class CO2Table extends React.Component {
                         </Typography>
                     </ExpansionPanelSummary>
                     <Divider />
-                    <Table>
+                    <Table className="co2-app-data-table">
                         <TableHead>
                             <TableRow>
                                 {this.props.cells.map((cell, idx) => (
