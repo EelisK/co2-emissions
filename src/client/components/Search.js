@@ -10,16 +10,6 @@ class Search extends React.Component {
         this.state = { country: "" };
     }
 
-    componentDidUpdate(prevProps) {
-        const now = this.props.disabled;
-        const then = prevProps.disabled;
-        // Check if component has just now become available
-        // If it has empty the previous input
-        if (!now && now !== then) {
-            this.setState({ country: "" });
-        }
-    }
-
     onChange(evt) {
         this.setState({ country: evt.target.value });
     }
