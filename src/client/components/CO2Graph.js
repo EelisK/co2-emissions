@@ -11,10 +11,10 @@ const CO2Graph = props => {
     // Get dimensions for chart (css doesn't work here)
     const isMobile = window.innerWidth <= 768;
     const width = (isMobile ? window.innerWidth * 0.9 : 700) - space * 2;
-    const height = isMobile ? window.innerHeight * .3 : 400;
+    const height = isMobile ? 220 : 400;
     return (
         <Paper style={{ padding: space, marginBottom: space }} className="co2-app-chart-container">
-            <Typography variant="h5">
+            <Typography variant="h6">
                 {titleCase(props.country)}
             </Typography>
             <LineChart width={width} height={height} data={props.data}>
