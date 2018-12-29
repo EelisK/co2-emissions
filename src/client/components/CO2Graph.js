@@ -9,11 +9,11 @@ const CO2Graph = props => {
     const space = theme.spacing.unit * 2;
     const strokeColor = theme.palette.text.primary;
     // Get dimensions for chart (css doesn't work here)
-    const isMobile = window.innerHeight <= 768;
-    const width = Math.min((isMobile ? window.innerWidth * 0.9 : 700), 700) - space * 2;
-    const height = 400;
+    const isMobile = window.innerWidth <= 768;
+    const width = (isMobile ? window.innerWidth * 0.9 : 700) - space * 2;
+    const height = isMobile ? window.innerHeight * .3 : 400;
     return (
-        <Paper style={{ padding: space, marginBottom: space }}>
+        <Paper style={{ padding: space, marginBottom: space }} className="co2-app-chart-container">
             <Typography variant="h5">
                 {titleCase(props.country)}
             </Typography>
