@@ -12,24 +12,18 @@ const CO2Graph = props => {
     const isMobile = window.innerHeight <= 768;
     const width = Math.min((isMobile ? window.innerWidth * 0.9 : 700), 700) - space * 2;
     const height = 400;
-    const formatCO2Emissions = x => {
-        const precision = Number(x.toFixed(2)).toPrecision(6);
-        if (precision.match(/e+/) !== null)
-            return precision.replace(/.\d+e\+/, "E+");
-        return x;
-    };
     return (
         <Paper style={{ padding: space, marginBottom: space }}>
             <Typography variant="h5">
                 {titleCase(props.country)}
             </Typography>
             <LineChart width={width} height={height} data={props.data}>
-                <XAxis dataKey="year" stroke={strokeColor} />
-                <YAxis dataKey="emissions" stroke={strokeColor} tickFormatter={formatCO2Emissions}>
-                    <Label value={props.yLabel} angle={-90} position="insideBottomLeft" fill={strokeColor} offset={8} />
-                </YAxis>
+                <XAxis dataKey="year" stroke={strokeColor}
+                    label={{ value: "year", position: "insideTopRight", dy: -19, fill: strokeColor }} />
+                <YAxis dataKey="emissions" stroke={strokeColor}
+                    label={{ value: props.yLabel, position: "insideTopRight", dx: 12, fill: strokeColor, angle: -90 }} />
                 <Line type="monotone" dataKey="emissions" stroke={theme.palette.secondary.main} />
-                <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.primary.light} />
+                <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.grey.A700} />
                 <Tooltip formatter={props.formatEmissions} content={<CO2ChartTooltipContainer />} />
             </LineChart>
         </Paper>
