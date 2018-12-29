@@ -18,7 +18,7 @@ const Results = props => {
                 return null;
             return (
                 <Grid container wrap="nowrap" key={i}>
-                    <Grid item className="co2-app-chart-container">
+                    <Grid item>
                         <CO2ChartContainer
                             data={data}
                             country={country.name} />

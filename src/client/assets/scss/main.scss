@@ -38,11 +38,6 @@ body {
     align-content: center;
 }
 
-.co2-app-chart-container {
-    margin: 0 auto !important;
-    width: 100%;
-}
-
 .co2-app-chart-tooltip {
     padding: $unit * 2;
     opacity: 0.95;
@@ -91,5 +86,15 @@ body {
          * Prevent table overflow on mobile
          */
         table-layout: fixed;
+    }
+}
+
+.co2-app-chart-container {
+    @media (max-width: 768px) {
+        /**
+         * Hide the container in case user is on mobile
+         * (clearer layout)
+         */
+        background: transparent !important;
     }
 }

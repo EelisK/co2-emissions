@@ -9,3 +9,14 @@
 .recharts-label {
     font-size: 0.85rem;
 }
+
+.recharts-dot {
+    @media (max-width: 768px) {
+        /**
+         * Circles look awful in mobile and their 
+         * radius cannot be changed with css so the best
+         * solution is not to display them
+         */
+        display: none;
+    }
+}
