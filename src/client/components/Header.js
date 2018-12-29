@@ -5,7 +5,7 @@ const Header = () => (
     <AppBar position="static">
         <Toolbar>
             <Typography variant="h6" gutterBottom>
-                CO<sup>2</sup>-EMISSIONS
+                CO<sub>2</sub>-EMISSIONS
             </Typography>
         </Toolbar>
     </AppBar>
