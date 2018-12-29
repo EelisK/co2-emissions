@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Paper } from "@material-ui/core";
-import { LineChart, Line, XAxis, CartesianGrid, YAxis, Tooltip, Label } from "recharts";
+import { LineChart, Line, XAxis, CartesianGrid, YAxis, Tooltip } from "recharts";
 import titleCase from "../util/titleCase";
 import theme from "../config/theme";
 import CO2ChartTooltipContainer from "../containers/CO2GraphTooltipContainer";
