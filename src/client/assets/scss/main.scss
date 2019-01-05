@@ -21,7 +21,23 @@ body {
 }
 
 .co2-app-search {
-    margin-top: $unit * 4;   
+    margin-top: $unit * 4;
+}
+
+.co2-app-search-icon-button {
+    padding: 10px;
+}
+
+.co2-app-search-input {
+    flex: 1;
+    margin-left: $unit;
+}
+
+.co2-app-search-container {
+    padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    background-color: transparent !important;
 }
 
 .co2-app-container {
@@ -81,12 +97,7 @@ body {
 }
 
 .co2-app-data-table {
-    @media (max-width: 768px) {
-        /**
-         * Prevent table overflow on mobile
-         */
-        table-layout: fixed;
-    }
+    table-layout: fixed;
 }
 
 .co2-app-chart-container {

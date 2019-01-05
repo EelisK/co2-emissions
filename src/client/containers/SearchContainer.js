@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Search from "../components/Search";
 import fetchCO2Emissions from "../actions/fetchCO2Emissions";
-import FetchStatus from "../util/FetchStatus"
+import FetchStatus from "../util/FetchStatus";
 
 const mapStateToProps = state => {
     return {
