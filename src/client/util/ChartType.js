@@ -1,6 +1,6 @@
 const ChartType = {
-    Graph: 1,
-    Table: 2
+    Graph: "graph",
+    Table: "table"
 };
 
 export default ChartType;
