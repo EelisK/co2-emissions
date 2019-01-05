@@ -1,6 +1,6 @@
 import React from "react";
 import { Fab } from "@material-ui/core";
-import ArrowUpIcon from "./ArrowUpIcon";
+import ArrowUpIcon from "../assets/img/arrow-up.svg";
 
 class ScrollTop extends React.Component {
 
@@ -37,10 +37,9 @@ class ScrollTop extends React.Component {
     }
 
     render() {
-        const visible = this.state.visible;
         return (
-            <Fab size="medium" color="secondary" className={`co2-app-scroll-top`} hidden={!visible} onClick={this.onClick}>
-                <ArrowUpIcon />
+            <Fab size="medium" color="secondary" className={`co2-app-scroll-top`} hidden={!this.state.visible} onClick={this.onClick}>
+                <img src={ArrowUpIcon} style={{ filter: "brightness(0)" }} />
             </Fab >
         );
     }

@@ -5,7 +5,7 @@ import {
     ExpansionPanel, ExpansionPanelSummary
 } from "@material-ui/core";
 import titleCase from "../util/titleCase";
-import ArrowUpIcon from "./ArrowUpIcon";
+import ArrowUpIcon from "../assets/img/arrow-up.svg";
 
 
 class CO2Table extends React.Component {
@@ -39,7 +39,8 @@ class CO2Table extends React.Component {
         return (
             <Paper className="co2-app-data-table-container">
                 <ExpansionPanel>
-                    <ExpansionPanelSummary expandIcon={<ArrowUpIcon style={{ transform: "matrix(-1, 0, 0, -1, 0, 0)" }} />}>
+                    <ExpansionPanelSummary expandIcon={
+                        <img src={ArrowUpIcon} style={{ transform: "matrix(-1, 0, 0, -1, 0, 0)" }} />}>
                         <Typography variant="subtitle1">
                             {titleCase(this.props.country)}
                         </Typography>
