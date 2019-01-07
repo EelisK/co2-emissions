@@ -31,55 +31,75 @@ class Search extends React.Component {
             this.setState({ countries: [] });
     }
 
+    /**
+     * Handles input navigation (arrows up and down + esc).
+     * @param {*} evt The keyDown event
+     */
     onKeyDown(evt) {
         const escKeyCode = 27;
         const arrowUpKeyCode = 38;
         const arrowDownKeyCode = 40;
-        const prevState = this.state;
-        const countryCount = prevState.countries.length;
+        const { activeIdx, countries } = this.state;
+        const countryCount = countries.length;
         let nextIdx;
         if (countryCount === 0)
             return;
         switch (evt.keyCode) {
+            // Go down the list or exit it
             case arrowUpKeyCode:
-                nextIdx = (prevState.activeIdx || countryCount) - 1;
+                if (activeIdx === null)
+                    nextIdx = countryCount - 1;
+                else if (activeIdx === 0)
+                    nextIdx = null;
+                else
+                    nextIdx = activeIdx - 1;
                 break;
+            // Go up the list or exit it
             case arrowDownKeyCode:
-                nextIdx = (((prevState.activeIdx === null ? -1 : prevState.activeIdx) + 1) % countryCount);
+                if (activeIdx === null)
+                    nextIdx = 0;
+                else if (activeIdx === countryCount - 1)
+                    nextIdx = null;
+                else
+                    nextIdx = activeIdx + 1;
                 break;
+            // Take the focus away from the list item (and terminate)
             case escKeyCode:
                 this.setState({ activeIdx: null });
             default:
                 return;
         }
-        this.setState({ activeIdx: nextIdx, country: prevState.countries[nextIdx] });
+        this.setState({ activeIdx: nextIdx });
     }
 
     /**
      * Fetch emissions with from the given country/countries
      * @param {*} evt The submit event
-     * @param {*} country Country which will be used to fetch the emission data.
-     * Default is this.state.country
+     * @param {*} co Optional parameter. Can be used to override the default country value from the state.
+     * This comes in handy with the list onClick function.
      */
-    onSubmit(evt, country = this.state.country) {
+    onSubmit(evt, co) {
         evt.preventDefault();
-        this.setState({ countries: [], country });
-        this.props.fetchEmissions(country);
+        const { activeIdx, countries, country } = this.state;
+        const selectedCountry = co || (activeIdx === null ? country : countries[activeIdx]);
+        this.setState({ countries: [], country: selectedCountry, activeIdx: null });
+        this.props.fetchEmissions(selectedCountry);
     }
 
     clearInput() {
-        this.setState({ country: "", countries: [] });
+        this.setState({ country: "", countries: [], activeIdx: null });
         this.inputRef && this.inputRef.focus();
     }
 
     render() {
+        const { activeIdx, country, countries } = this.state;
         return (
             <form className="co2-app-search" onSubmit={this.onSubmit} method="POST">
                 <Paper elevation={3} className="co2-app-search-container">
                     <InputBase
                         required
                         onChange={this.onChange}
-                        value={this.state.country}
+                        value={activeIdx === null ? country : countries[activeIdx]}
                         placeholder="Search by country"
                         className="co2-app-search-input"
                         onKeyDown={this.onKeyDown}
@@ -98,10 +118,10 @@ class Search extends React.Component {
                 </Paper>
                 <Paper className="co2-app-countries-list-container" elevation={3}>
                     <List className="co2-app-countries-list" style={{ background: theme.palette.background.default }}>
-                        {this.state.countries.map((country, idx) => {
+                        {countries.map((country, idx) => {
                             return (
                                 <ListItem button key={country} onClick={evt => this.onSubmit(evt, country)} onKeyDown={this.onKeyDown}
-                                    style={{ color: theme.typography.button.color }} selected={this.state.activeIdx === idx}>
+                                    style={{ color: theme.typography.button.color }} selected={activeIdx === idx}>
                                     {titleCase(country)}
                                 </ListItem>
                             );
