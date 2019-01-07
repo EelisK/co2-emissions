@@ -1,3 +1,4 @@
+const trimQuery = require("../../util/trimQuery");
 const getPool = require("../../database/getPool");
 const groupBy = require("../../util/groupBy");
 
@@ -31,8 +32,8 @@ function listEmissions(req, res) {
 }
 
 function listEmissionsByCountry(req, res) {
-    // First escape the string to XML format and then to a query friendly format
-    const country = req.params.country.toLowerCase();
+    // First set the country to a query friendly format
+    const country = trimQuery(req.params.country);
     const pool = getPool();
     return pool.query("SELECT * FROM emissions WHERE country like $1 ORDER BY year;", [`%${country}%`])
         .then(x => res.json(groupEmissionData(x.rows)).send())
