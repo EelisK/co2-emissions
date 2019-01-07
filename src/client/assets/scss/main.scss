@@ -9,6 +9,13 @@ $unit: 8px;
     background: linear-gradient($value);
 }
 
+@mixin content-width {
+    width: 700px;
+    @media (max-width: 768px) {
+        width: 90%;
+    }
+}
+
 html body {
     margin: 0;
     padding: 0;
@@ -42,10 +49,7 @@ body {
 
 .co2-app-container {
     margin: $unit * 2 auto;
-    max-width: 700px;
-    @media (max-width: 768px) {
-        max-width: 90%;
-    }
+    @include content-width();
 }
 
 .co2-app-center-content {
@@ -107,5 +111,19 @@ body {
          * (clearer layout)
          */
         background: transparent !important;
+    }
+}
+
+.co2-app-countries-list-container {
+    position: absolute !important;
+    // Settings below the list
+    z-index: 1;
+    @include content-width();
+    background: transparent !important;
+}
+
+.co2-app-countries-list {
+    &:empty {
+        padding: 0;
     }
 }
