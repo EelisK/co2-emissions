@@ -35,7 +35,14 @@ function listEmissionsByCountry(req, res) {
     // First set the country to a query friendly format
     const country = trimQuery(req.params.country);
     const pool = getPool();
-    return pool.query("SELECT * FROM emissions WHERE country like $1 ORDER BY country, year;", [`%${country}%`])
+    return pool.query(`
+        SELECT * FROM emissions
+        WHERE country like $1
+        ORDER BY CASE
+            WHEN country LIKE $2 THEN 0
+            ELSE 1
+        END, country, year;
+    `, [`%${country}%`, `${country}%`])
         .then(x => res.json(groupEmissionData(x.rows)).send())
         .catch(() => res.status(500).send())
         .then(() => pool.end());
