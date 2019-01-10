@@ -1,7 +1,6 @@
 import React from "react";
 import { Divider, IconButton, InputBase, Paper, List, ListItem } from "@material-ui/core";
 import theme from "../config/theme";
-import titleCase from "../util/titleCase";
 import CloseIcon from "../assets/img/close.svg";
 import MagnifyIcon from "../assets/img/magnify.svg";
 
@@ -122,7 +121,7 @@ class Search extends React.Component {
                             return (
                                 <ListItem button key={country} onClick={evt => this.onSubmit(evt, country)} onKeyDown={this.onKeyDown}
                                     style={{ color: theme.typography.button.color }} selected={activeIdx === idx}>
-                                    {titleCase(country)}
+                                    {country}
                                 </ListItem>
                             );
                         })}

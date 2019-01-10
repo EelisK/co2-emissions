@@ -4,6 +4,7 @@ import Search from "../components/Search";
 import fetchCO2Emissions from "../actions/fetchCO2Emissions";
 import FetchStatus from "../util/FetchStatus";
 import HttpRequest from "../util/HttpRequest";
+import titleCase from "../util/titleCase";
 
 /**
  * Handle the country name previews in here
@@ -13,7 +14,10 @@ import HttpRequest from "../util/HttpRequest";
  * @param {*} name String that is matched with the possible countries
  */
 const getCountries = name => {
-    return new HttpRequest(`/api/v1/countries/${name}`).send().then(x => x.data);
+    return new HttpRequest(`/api/v1/countries/${name}`)
+        .send()
+        .then(x => x.data)
+        .then(data => data.map(x => titleCase(x)));
 };
 
 const mapStateToProps = state => {
