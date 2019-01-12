@@ -26,7 +26,7 @@ const mapStateToProps = state => {
                 key: "year"
             },
             {
-                name: "emissions (" + (state.perCapita ? "kg per capita" : "tkg") + ")",
+                name: "emissions (" + (state.perCapita ? "kg per capita" : "10³kg") + ")",
                 key: "emissions"
             },
             {
