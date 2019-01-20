@@ -114,15 +114,21 @@ body {
     }
 }
 
-.co2-app-countries-list-container {
+.co2-app-autosuggest-container {
     position: absolute !important;
     // Settings below the list
     z-index: 1;
     @include content-width();
     background: transparent !important;
+    margin-top: $unit;
 }
 
-.co2-app-countries-list {
+.co2-app-autosuggest-match {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.co2-app-autosuggest {
     &:empty {
         padding: 0;
     }

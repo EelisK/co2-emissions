@@ -90,6 +90,31 @@ class Search extends React.Component {
         this.inputRef && this.inputRef.focus();
     }
 
+    /**
+     * Render name so that the matching
+     * part of the name will be highlighted
+     * @param {*} name The name that will be compared to state.country
+     */
+    renderSuggestion(name) {
+        const trim = str => str.replace(/\s+/g, " ").toLowerCase().trim();
+        const country = trim(this.state.country);
+        const trimmedName = trim(name);
+        const match = trimmedName.match(country);
+        if (match === null)
+            return name;
+        const
+            first  = name.slice(0, match.index),
+            second = name.slice(match.index, match.index + match[0].length),
+            third  = name.slice(match.index + match[0].length, name.length);
+        return (
+            <>
+                <span>{first}</span>
+                <span className="co2-app-autosuggest-match">{second}</span>
+                <span>{third}</span>
+            </>
+        );
+    }
+
     render() {
         const { activeIdx, country, countries } = this.state;
         return (
@@ -115,14 +140,14 @@ class Search extends React.Component {
                         <img src={CloseIcon} />
                     </IconButton>
                 </Paper>
-                <Paper className="co2-app-countries-list-container" elevation={3}>
-                    <List className="co2-app-countries-list" style={{ background: theme.palette.background.default }}>
+                <Paper className="co2-app-autosuggest-container" elevation={3}>
+                    <List className="co2-app-autosuggest" style={{ background: theme.palette.background.default }}>
                         {countries.map((country, idx) => {
                             return (
                                 <ListItem button key={country} onClick={evt => this.onSubmit(evt, country)} onKeyDown={this.onKeyDown}
                                     style={{ color: theme.typography.button.color }} selected={activeIdx === idx}>
                                     <Typography variant="subtitle1">
-                                        {country}
+                                        {this.renderSuggestion(country)}
                                     </Typography>
                                 </ListItem>
                             );
