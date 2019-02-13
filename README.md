@@ -5,6 +5,11 @@
 * npm
 * PostgreSQL
 
+## TODO
+* Throttle autosuggest fetching
+* Multiple countries in same graph
+* Cache for database queries
+
 ## Installation
 ### dependencies
 ```bash
