@@ -9,6 +9,7 @@
 * Throttle autosuggest fetching
 * Multiple countries in same graph
 * Cache for database queries
+* Better promise error handling
 
 ## Installation
 ### dependencies
